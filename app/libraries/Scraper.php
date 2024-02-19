@@ -1,8 +1,9 @@
 <?php
 
-require_once 'vendor/autoload.php';
+namespace libraries;
 
 use DiDom\Document;
+use Faker;
 
 class Scraper
 {

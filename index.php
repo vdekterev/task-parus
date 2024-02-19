@@ -1,4 +1,9 @@
-<!doctype html>
+<?php
+
+use libraries\Scraper;
+
+?>
+    <!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -42,7 +47,7 @@
 
     </form>
 </div>
-<script src="js/script.js"></script>
+<script src="public/js/script.js"></script>
 </body>
 </html>
 
@@ -69,7 +74,7 @@ if (empty($_GET)) {
     $phone = $organizerTable->find("tr td:nth-child(2)")[2]->text();
     $debtorInn = $debtorTable->find("tr td:nth-child(2)")[3]->text();
     $caseNumber = $debtorTable->find("tr td:nth-child(2)")[8]->text();
-    $tradeDate = $tradeTable->find("tr td:nth-child(2)")[3]->text();
+    $startDate = $tradeTable->find("tr td:nth-child(2)")[3]->text();
 
     echo '<pre>';
     echo $url = $tradeInfo->url;
@@ -86,6 +91,6 @@ if (empty($_GET)) {
     echo '<br>';
     echo $caseNumber = $debtorTable->find("tr td:nth-child(2)")[8]->text();
     echo '<br>';
-    echo $tradeDate = $tradeTable->find("tr td:nth-child(2)")[3]->text();
+    echo $startDate = $tradeTable->find("tr td:nth-child(2)")[3]->text();
     echo '<br>';
 }
