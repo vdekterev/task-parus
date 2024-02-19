@@ -1,5 +1,5 @@
 <?php
-
+use controllers\Lots;
 /**
  * App Core Class
  * Creates URL & loads Core Controller
@@ -21,7 +21,7 @@ class Core
      * Default Method
      * @var string
      */
-    protected string $currentMethod = 'notfound';
+    protected string $currentMethod = 'index';
     /**
      * Params method's array (optional)
      * @var array

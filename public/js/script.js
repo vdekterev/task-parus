@@ -3,7 +3,6 @@ const form = document.querySelector('.form'),
     lotNumber = document.querySelector('input#lotNumber'),
     alert = document.querySelector('#alert');
 
-
 lotNumber.addEventListener('input', (e) => {
     const regexp = new RegExp("[0-9]{4}");
     if (e.target.value.length > 4) {
