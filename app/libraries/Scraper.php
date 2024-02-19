@@ -1,7 +1,6 @@
 <?php
 
 namespace libraries;
-require_once 'vendor/autoload.php';
 
 use DiDom\Document;
 use Faker;
