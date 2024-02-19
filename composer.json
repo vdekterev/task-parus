@@ -1,6 +1,7 @@
 {
     "require": {
         "fakerphp/faker": "^1.23",
-        "imangazaliev/didom": "^2.0"
+        "imangazaliev/didom": "^2.0",
+        "vlucas/phpdotenv": "^5.6"
     }
 }

@@ -1,4 +1,9 @@
-<!doctype html>
+<?php
+
+use libraries\Scraper;
+
+?>
+    <!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -42,7 +47,7 @@
 
     </form>
 </div>
-<script src="js/script.js"></script>
+<script src="public/js/script.js"></script>
 </body>
 </html>
 
