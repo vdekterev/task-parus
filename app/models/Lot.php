@@ -11,7 +11,12 @@ class Lot
 
     public function getAllLots(): array
     {
-        return $this->db->getResult();
+        try {
+            return $this->db->getResult();
+        } catch (PDOException) {
+            return [];
+        }
+
 
     }
     public function createLot(array $formdata): bool
