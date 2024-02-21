@@ -67,14 +67,14 @@ class Scraper
      * @param $target
      * @return string
      */
-    public function regex(string $expression, string $target = ''): string
+    public function regex(string $expression, string $target = ''): string|null
     {
         if ($target !== '') {
             preg_match($expression, $target, $matches);
         } else {
             preg_match($expression, $this->dom, $matches);
         }
-        return $matches[0];
+        return $matches[0] ?? null;
     }
 
     /**

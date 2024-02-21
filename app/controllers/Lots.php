@@ -11,54 +11,69 @@ class Lots extends Controller
 
     public function index(): void
     {
-        $data = ['url' => '',
-            'content' => '',
-            'initial_price' => '',
-            'email' => '',
-            'phone' => '',
-            'debtor_inn' => '',
-            'case_number' => '',
-            'start_date' => '',
-        ];
         if (!empty($_GET)) {
             $tradeList = new Scraper('https://nistp.ru/bankrot/trade_list.php');
             $tradeNid = $tradeList->regex("/trade_nid=[0-9]+/");
-            $tradeInfo = new Scraper("https://nistp.ru/bankrot/trade_view.php?$tradeNid");
-            $document = $tradeInfo->getDom();
-            $lotNumber = $_GET['lotNumber'];
+            if ($tradeNid) {
+                $tradeInfo = new Scraper("https://nistp.ru/bankrot/trade_view.php?$tradeNid");
+                $document = $tradeInfo->getDom();
+                $lotNumber = $_GET['lotNumber'];
 
-            $lotTable = $document->find("table#table_lot_$lotNumber tbody")[0]; // !!!
-            $organizerTable = $document->find("table.node_view tbody")[0];
-            $debtorTable = $document->find("table.node_view[style]")[1];
-            $tradeTable = $document->find("table.node_view[style]")[0];
-            $tradeType = mb_strtolower($tradeTable->find('tr td:nth-child(2)')[0]->text());
+                $lotTable = $document->find("table#table_lot_$lotNumber tbody tr td:nth-child(1)");
+                $organizerTable = $document->find("table.node_view")[0]->find('tbody tr td:nth-child(1)');
+                $debtorTable = $document->find("table.node_view[style]")[1]->find('tr td:nth-child(1)');
+                $tradeTable = $document->find("table.node_view[style]")[0]->find('tr td:nth-child(1)');
 
-            $data['url'] = $tradeInfo->url;
-            $data['content'] = $lotTable->find("tr.alw td:nth-child(2)")[0]->text();
-            $data['initial_price'] = $lotTable->find("tr td:nth-child(2)")[4]->text();
-            $idx = 4;
-            while (!intval($data['initial_price'])) {
-                $data['initial_price'] = $lotTable->find("tr td:nth-child(2)")[$idx]->text();
-                $idx++;
-            }
-            $data['email'] = $organizerTable->find("tr td:nth-child(2)")[1]->text();
-            $data['phone'] = $organizerTable->find("tr td:nth-child(2)")[2]->text();
-            $data['debtor_inn'] = $debtorTable->find("tr td:nth-child(2)")[4]->text();
-            $data['case_number'] = $debtorTable->find("tr td:nth-child(2)")[9]->text();
+                $data['url'] = $tradeInfo->url;
+                foreach ($lotTable as $row) {
+                    switch (true) {
+                        case preg_match("/cведения об имуществе/ui", $row->text()):
+                            $data['content'] = $row->nextSibling()->text();
+                            break;
+                        case preg_match("/начальная цена/ui", $row->text()):
+                            $data['initial_price'] = $row->nextSibling()->text();
+                            break;
+                    }
+                }
+                foreach ($organizerTable as $row) {
+                    switch (true) {
+                        case $row->text() == "E-mail":
+                            $data['email'] = $row->nextSiblings(null, 'DOMElement')[0]->text();
+                            break;
+                        case $row->text() == "Телефон":
+                            $data['phone'] = $row->nextSiblings(null, 'DOMElement')[0]->text();
+                            break;
+                    }
+                }
+                foreach ($debtorTable as $row) {
+                    switch (true) {
+                        case $row->text() == "ИНН":
+                            $data['debtor_inn'] = $row->nextSibling()->text();
+                            break;
+                        case $row->text() == "Номер дела о банкротстве":
+                            $data['case_number'] = $row->nextSibling()->text();
 
-            if (str_contains($tradeType, 'публичное предложение')) {
-                $data['start_date'] = date('Y-m-d H:i:s',
-                    strtotime($lotTable->find('tr td table tr')[1]->firstChild()->text()));
+                    }
+                }
+                foreach ($tradeTable as $row) {
+                    switch (true) {
+                        case $row->text() == "Дата проведения":
+                        case $row->text() == "Дата начала представления заявок на участие":
+                            $data['start_date'] = date('Y-m-d H:i:s',
+                                strtotime($row->nextSibling()->text()));
+                            break;
+                    }
+                }
+                if (!$this->lotModel->lotExists($data['case_number'], $data['content'])) {
+                    $this->lotModel->createLot($data);
+                } else {
+                    echo '<script>alert("Лот обновлен")</script>';
+                    $this->lotModel->updateLot($data, $data['content'], $data['case_number']);
+                }
             } else {
-                $data['start_date'] = date('Y-m-d H:i:s',
-                    strtotime($tradeTable->find("tr td:nth-child(2)")[3]->text()));
-                $this->lotModel->createLot($data);
+                echo '<script>alert("Предмет торгов не найден")</script>';
             }
-//            $this->lotModel->createLot($data);
-            print_r($data['debtor_inn']);
         }
-
-
         $lots = $this->showLots();
         $this->view('lots/index', $lots);
     }

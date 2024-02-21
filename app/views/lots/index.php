@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title><?= APP_NAME ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
@@ -34,7 +34,7 @@
                            placeholder="1-9999" required>
                 </div>
                 <div class="mb-3">
-                    <input type="submit" class="btn btn-primary" id="submitBtn">
+                    <input type="submit" class="btn btn-primary" id="submitBtn" value="Найти">
                 </div>
             </div>
         </div>
@@ -45,24 +45,24 @@
             <tr>
                 <th scope="col">URL</th>
                 <th scope="col">Описание</th>
+                <th scope="col">Начальная цена</th>
                 <th scope="col">Email контактного лица</th>
                 <th scope="col">Номер контактного лица</th>
                 <th scope="col">ИНН должника</th>
                 <th scope="col">Номер дела</th>
-                <th scope="col">Начальная цена</th>
                 <th scope="col">Дата проведения</th>
             </tr>
             </thead>
             <tbody>
             <?php foreach ($data as $d): ?>
                 <tr>
-                    <th scope="row"><a style="text-decoration: none" href="<?= $d->url ?>">Ссылка</a></th>
-                    <td><?= substr($d->content, 0, 19) ?>...</td>
+                    <th scope="row"><a style="text-decoration: none" href="<?= $d->url ?>" target="_blank">Ссылка</a></th>
+                    <td><?= substr($d->content, 0, 10) ?>...</td>
+                    <td><?= $d->initial_price ?></td>
                     <td><?= $d->email ?></td>
                     <td><?= $d->phone ?></td>
                     <td><?= $d->debtor_inn ?></td>
                     <td><?= $d->case_number ?></td>
-                    <td><?= $d->initial_price ?></td>
                     <td><?= $d->start_date ?></td>
                 </tr>
             <?php endforeach ?>

@@ -11,7 +11,7 @@ lotNumber.addEventListener('input', (e) => {
 })
 
 tradeNumber.addEventListener('change', (e) => {
-    const regexp = new RegExp("^[0-9]{5}[-]{1}[А-Я]{4}$");
+    const regexp = new RegExp("^[0-9]{4,}[-]{1}[А-Я]{4}$");
     let value = e.target.value.trim();
     if (!regexp.test(value)) {
         e.target.value = '';
