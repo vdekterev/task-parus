@@ -3,7 +3,6 @@ const form = document.querySelector('.form'),
     lotNumber = document.querySelector('input#lotNumber'),
     alert = document.querySelector('#alert');
 
-
 lotNumber.addEventListener('input', (e) => {
     const regexp = new RegExp("[0-9]{4}");
     if (e.target.value.length > 4) {
@@ -12,7 +11,7 @@ lotNumber.addEventListener('input', (e) => {
 })
 
 tradeNumber.addEventListener('change', (e) => {
-    const regexp = new RegExp("^[0-9]{5}[-]{1}[А-Я]{4}$");
+    const regexp = new RegExp("^[0-9]{4,}[-]{1}[А-Я]{4}$");
     let value = e.target.value.trim();
     if (!regexp.test(value)) {
         e.target.value = '';

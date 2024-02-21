@@ -66,7 +66,6 @@ class Database
         $this->stmt = $this->dbh->prepare($sql);
     }
 
-
     /**
      * Bind Value
      * @param string $param
@@ -102,6 +101,7 @@ class Database
      */
     public function getResult(): array
     {
+        $this->query('SELECT * FROM lots');
         $this->execute();
         return $this->stmt->fetchAll(PDO::FETCH_OBJ);
     }

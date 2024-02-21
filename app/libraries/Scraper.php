@@ -1,9 +1,8 @@
 <?php
 
-namespace libraries;
 
 use DiDom\Document;
-use Faker;
+use Faker\Factory;
 
 class Scraper
 {
@@ -65,12 +64,17 @@ class Scraper
     /**
      * Returns first result of preg_match
      * @param string $expression
+     * @param $target
      * @return string
      */
-    public function regex(string $expression): string
+    public function regex(string $expression, string $target = ''): string|null
     {
-        preg_match($expression, $this->dom, $matches);
-        return $matches[0];
+        if ($target !== '') {
+            preg_match($expression, $target, $matches);
+        } else {
+            preg_match($expression, $this->dom, $matches);
+        }
+        return $matches[0] ?? null;
     }
 
     /**
