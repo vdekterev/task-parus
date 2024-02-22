@@ -43,7 +43,7 @@
         <table class="table">
             <thead>
             <tr>
-                <th scope="col">URL</th>
+                <th scope="col">Идентификатор торгов</th>
                 <th scope="col">Описание</th>
                 <th scope="col">Начальная цена</th>
                 <th scope="col">Email контактного лица</th>
@@ -56,7 +56,11 @@
             <tbody>
             <?php foreach ($data as $d): ?>
                 <tr>
-                    <th scope="row"><a style="text-decoration: none" href="<?= $d->url ?>" target="_blank">Ссылка</a></th>
+                    <th scope="row">
+                        <a style="text-decoration: none" href="<?= $d->url ?>" target="_blank">
+                            <?= substr($d->url, strpos($d->url, '=') + 1) . ' | Лот №' . $d->lot_number ?>
+                        </a>
+                    </th>
                     <td><?= substr($d->content, 0, 10) ?>...</td>
                     <td><?= $d->initial_price ?></td>
                     <td><?= $d->email ?></td>
