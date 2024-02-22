@@ -1,5 +1,4 @@
 <?php
-
 class Lot
 {
     private Database $db;
@@ -13,7 +12,6 @@ class Lot
     {
         return $this->db->getResult();
     }
-
 
     public function createLot(array $formdata): bool
     {
@@ -37,7 +35,7 @@ class Lot
         $this->db->query('UPDATE lots SET url=:url,lot_number=:lot_number, content=:content, initial_price=:initial_price, 
                 email=:email, phone=:phone, debtor_inn=:debtor_inn, 
                 case_number=:case_number, start_date=:start_date
-            WHERE content=:content AND case_number=:case_number');
+            WHERE url=:url AND lot_number=:lot_number');
         $this->db->bind(':url', $formdata['url']);
         $this->db->bind(':lot_number', $formdata['lot_number']);
         $this->db->bind(':content', $formdata['content']);
@@ -50,11 +48,11 @@ class Lot
         return $this->db->execute();
     }
 
-    public function lotExists(string $case_number, string $content): object|bool
+    public function lotExists(string $url, string $lot_number): object|bool
     {
-        $this->db->query('SELECT * FROM lots WHERE case_number = :case_number AND content = :content');
-        $this->db->bind(':case_number', $case_number);
-        $this->db->bind(':content', $content);
+        $this->db->query('SELECT * FROM lots WHERE url=:url AND lot_number=:lot_number');
+        $this->db->bind(':url', $url);
+        $this->db->bind(':lot_number', $lot_number);
         return $this->db->getSingleRecord();
     }
 

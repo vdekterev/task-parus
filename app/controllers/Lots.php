@@ -64,11 +64,11 @@ class Lots extends Controller
                             break;
                     }
                 }
-                if (!$this->lotModel->lotExists($data['case_number'], $data['content'])) {
+                if (!$this->lotModel->lotExists($data['url'], $data['lot_number'])) {
                     $this->lotModel->createLot($data);
                 } else {
                     echo '<script>alert("Лот обновлен")</script>';
-                    $this->lotModel->updateLot($data, $data['content'], $data['case_number']);
+                    $this->lotModel->updateLot($data, $data['url'], $data['lot_number']);
                 }
             } else {
                 echo '<script>alert("Предмет торгов не найден")</script>';
