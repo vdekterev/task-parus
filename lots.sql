@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost
--- Время создания: Фев 21 2024 г., 08:19
+-- Время создания: Фев 22 2024 г., 07:58
 -- Версия сервера: 10.4.28-MariaDB
 -- Версия PHP: 8.2.4
 
@@ -30,6 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `lots` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `url` varchar(512) NOT NULL,
+  `lot_number` smallint(5) UNSIGNED NOT NULL,
   `content` text NOT NULL,
   `initial_price` varchar(32) NOT NULL,
   `email` varchar(128) NOT NULL,
@@ -43,10 +44,9 @@ CREATE TABLE `lots` (
 -- Дамп данных таблицы `lots`
 --
 
-INSERT INTO `lots` (`id`, `url`, `content`, `initial_price`, `email`, `phone`, `debtor_inn`, `case_number`, `start_date`) VALUES
-(57, 'https://nistp.ru/bankrot/trade_view.php?trade_nid=355845', 'Автомобиль требует капитального ремонта ходовой и кузовной части. Нуждается в замене двигателя внутреннего сгорания. Является совместно нажитым имуществом.', '150000.00', 'sablinada@mail.ru', '89231702128', '421503704802', 'А27-14381/2023', '2024-04-03 08:00:00'),
-(58, 'https://nistp.ru/bankrot/trade_view.php?trade_nid=355630', 'Гараж, площадью 21 кв.м., расположенный по адресу: Свердловская обл., городской округ «Город Лесной», Лесной г., Гаражный массив 1, бокс №2, гараж №9, с кадастровым номером: 66:54:0116004:731', '58500.00', 'torgi@kurilin.ru', '+79226322840', '663001479410', 'А60-43197/2023', '2024-03-29 10:00:00'),
-(59, 'https://nistp.ru/bankrot/trade_view.php?trade_nid=355583', 'Права и обязанности по договору долгосрочной аренды земельного участка площадью 50 000 кв. м., кадастровый номер № 50:08:0010107:12, по адресу: обл. Московская, р-н Истринский, г. Истра, ул. Урицкого, дом 114 (примерно в 1020 м, по направлению на северо-запад от ориентира), заключенному 01.08.2019 с Администрацией Истринского муниципального района Московской области на сроком на 49 лет (действие договора до 19.07.2062). Категория земель: земли населенных пунктов. Вид разрешенного использования: под производственные цели.', '106934608.80', 'a.a.boravchenkov@mail.ru', '+79112185558', '5044047125', 'А41-66241/2020', '2024-02-26 10:00:00');
+INSERT INTO `lots` (`id`, `url`, `lot_number`, `content`, `initial_price`, `email`, `phone`, `debtor_inn`, `case_number`, `start_date`) VALUES
+(77, 'https://nistp.ru/bankrot/trade_view.php?trade_nid=355520', 1, 'Жилое помещение (квартира), кадастровый номер: 54:35:071135:556, Новосибирская область, r. Новосибирск, ул. Бориса Боrаткова, д. 194/5, кв. 152, 31,5 кв. м.', '5100000.00', 'samsonov.arbitr@gmail.com', '89031091167', '540543385578', '№А40-2493/23-157-4 «Ф»', '2024-04-02 12:00:00'),
+(78, 'https://nistp.ru/bankrot/trade_view.php?trade_nid=355541', 1, 'Транспортное средство Lada Granta, идентификационный номер (VIN): XTA219170M0423727.', '682875.00', 'finarbitrzolotavina@gmail.com', '89220418539', '860303935123', 'А75-10650/2023', '2024-04-03 10:00:00');
 
 --
 -- Индексы сохранённых таблиц
@@ -56,7 +56,8 @@ INSERT INTO `lots` (`id`, `url`, `content`, `initial_price`, `email`, `phone`, `
 -- Индексы таблицы `lots`
 --
 ALTER TABLE `lots`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `lots_nc_idx` (`lot_number`,`case_number`);
 
 --
 -- AUTO_INCREMENT для сохранённых таблиц
@@ -66,7 +67,7 @@ ALTER TABLE `lots`
 -- AUTO_INCREMENT для таблицы `lots`
 --
 ALTER TABLE `lots`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
