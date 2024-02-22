@@ -18,6 +18,7 @@ class Lots extends Controller
                 $tradeInfo = new Scraper("https://nistp.ru/bankrot/trade_view.php?$tradeNid");
                 $document = $tradeInfo->getDom();
                 $lotNumber = $_GET['lotNumber'];
+                $data['lot_number'] = $lotNumber;
 
                 $lotTable = $document->find("table#table_lot_$lotNumber tbody tr td:nth-child(1)");
                 $organizerTable = $document->find("table.node_view")[0]->find('tbody tr td:nth-child(1)');
@@ -52,7 +53,6 @@ class Lots extends Controller
                             break;
                         case $row->text() == "Номер дела о банкротстве":
                             $data['case_number'] = $row->nextSibling()->text();
-
                     }
                 }
                 foreach ($tradeTable as $row) {
@@ -64,11 +64,11 @@ class Lots extends Controller
                             break;
                     }
                 }
-                if (!$this->lotModel->lotExists($data['case_number'], $data['content'])) {
+                if (!$this->lotModel->lotExists($data['url'], $data['lot_number'])) {
                     $this->lotModel->createLot($data);
                 } else {
                     echo '<script>alert("Лот обновлен")</script>';
-                    $this->lotModel->updateLot($data, $data['content'], $data['case_number']);
+                    $this->lotModel->updateLot($data, $data['url'], $data['lot_number']);
                 }
             } else {
                 echo '<script>alert("Предмет торгов не найден")</script>';
