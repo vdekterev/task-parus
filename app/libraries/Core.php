@@ -1,5 +1,5 @@
 <?php
-use controllers\Lots;
+
 /**
  * App Core Class
  * Creates URL & loads Core Controller
@@ -11,7 +11,7 @@ class Core
      * Default Controller
      * @var string
      */
-    protected string $currentController = 'Lots';
+    protected string $currentController = 'Trades';
     /**
      * Controller Instance
      * @var object

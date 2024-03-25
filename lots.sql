@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `lots`
+-- Структура таблицы `trades`
 --
 
 CREATE TABLE `lots` (
@@ -41,7 +41,7 @@ CREATE TABLE `lots` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Дамп данных таблицы `lots`
+-- Дамп данных таблицы `trades`
 --
 
 INSERT INTO `lots` (`id`, `url`, `lot_number`, `content`, `initial_price`, `email`, `phone`, `debtor_inn`, `case_number`, `start_date`) VALUES
@@ -53,7 +53,7 @@ INSERT INTO `lots` (`id`, `url`, `lot_number`, `content`, `initial_price`, `emai
 --
 
 --
--- Индексы таблицы `lots`
+-- Индексы таблицы `trades`
 --
 ALTER TABLE `lots`
   ADD PRIMARY KEY (`id`),
@@ -64,7 +64,7 @@ ALTER TABLE `lots`
 --
 
 --
--- AUTO_INCREMENT для таблицы `lots`
+-- AUTO_INCREMENT для таблицы `trades`
 --
 ALTER TABLE `lots`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;

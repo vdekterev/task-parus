@@ -7,13 +7,16 @@ namespace Composer\Autoload;
 class ComposerStaticInit662aedcc6781129fa81bbdd533343456
 {
     public static $files = array (
-        '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
     );
 
     public static $prefixLengthsPsr4 = array (
+        'T' => 
+        array (
+            'Twig\\' => 5,
+        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Php80\\' => 23,
@@ -22,25 +25,23 @@ class ComposerStaticInit662aedcc6781129fa81bbdd533343456
         ),
         'P' => 
         array (
-            'Psr\\Container\\' => 14,
             'PhpOption\\' => 10,
         ),
         'G' => 
         array (
             'GrahamCampbell\\ResultType\\' => 26,
         ),
-        'F' => 
-        array (
-            'Faker\\' => 6,
-        ),
         'D' => 
         array (
             'Dotenv\\' => 7,
-            'DiDom\\' => 6,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
+        'Twig\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/twig/twig/src',
+        ),
         'Symfony\\Polyfill\\Php80\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-php80',
@@ -53,10 +54,6 @@ class ComposerStaticInit662aedcc6781129fa81bbdd533343456
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
         ),
-        'Psr\\Container\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/psr/container/src',
-        ),
         'PhpOption\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption',
@@ -65,17 +62,9 @@ class ComposerStaticInit662aedcc6781129fa81bbdd533343456
         array (
             0 => __DIR__ . '/..' . '/graham-campbell/result-type/src',
         ),
-        'Faker\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/fakerphp/faker/src/Faker',
-        ),
         'Dotenv\\' => 
         array (
             0 => __DIR__ . '/..' . '/vlucas/phpdotenv/src',
-        ),
-        'DiDom\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/imangazaliev/didom/src/DiDom',
         ),
     );
 

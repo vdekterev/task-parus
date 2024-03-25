@@ -1,5 +1,8 @@
 <?php
 
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
+
 /**
  * Base Controller
  * Loads Models & Views
@@ -14,7 +17,8 @@ class Controller
     public function model(string $model): object
     {
         $model = ucwords($model);
-        require_once "../app/models/{$model}.php";
+        require_once APP_ROOT . "/models/$model.php";
+
         return new $model;
     }
 
@@ -26,10 +30,17 @@ class Controller
      */
     public function view(string $view, array $data = []): void
     {
-        if (file_exists("../app/views/{$view}.php")) {
-            require_once "../app/views/{$view}.php";
+        $viewArr = explode('/', $view);
+        $entity = $viewArr[0];
+        $method = $viewArr[1];
+        if (file_exists("../app/views/$view.twig")) {
+            require_once "../app/views/$view.twig";
+            $loader = new FilesystemLoader(APP_ROOT."/views/$entity");
+            $twig = new Environment($loader);
+//            print_r($data);
+            echo $twig->render("$method.twig", ['data' => $data]);
         } else {
-            die("View: {$view} does not exist");
+            die("View: $view does not exist");
         }
     }
 }

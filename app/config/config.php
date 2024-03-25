@@ -1,10 +1,11 @@
 <?php
 // App Root
 define('APP_ROOT', dirname(__FILE__, 2));
+
 // URL Root
-const URL_ROOT = 'http://localhost/task-parus';
+const URL_ROOT = 'http://parseui.loc';
 // App Name
-const APP_NAME = 'TaskParus';
+const APP_NAME = 'TBankrot | Fedresurs';
 // Dotenv
 $dotenv = \Dotenv\Dotenv::createImmutable(APP_ROOT . "/../");
 $dotenv->load();

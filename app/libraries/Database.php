@@ -73,16 +73,8 @@ class Database
      * @param int|null $type
      * @return void
      */
-    public function bind(string $param, mixed $value, int|null $type = null): void
+    public function bind(string $param, $value, int $type = null): void
     {
-        if (is_null($type)) {
-            $type = match (true) {
-                is_int($value) => PDO::PARAM_INT,
-                is_bool($value) => PDO::PARAM_BOOL,
-                is_null($value) => PDO::PARAM_NULL,
-                default => PDO::PARAM_STR,
-            };
-        }
         $this->stmt->bindValue($param, $value, $type);
     }
 
@@ -101,7 +93,7 @@ class Database
      */
     public function getResult(): array
     {
-        $this->query('SELECT * FROM lots');
+        $this->query('SELECT * FROM torgi');
         $this->execute();
         return $this->stmt->fetchAll(PDO::FETCH_OBJ);
     }
@@ -110,7 +102,7 @@ class Database
      * Get single record as an object
      * @return object|false
      */
-    public function getSingleRecord(): object|false
+    public function getSingleRecord(): object
     {
         $this->execute();
         return $this->stmt->fetch(PDO::FETCH_OBJ);
