@@ -1,5 +1,8 @@
 {% extends 'base.twig' %}
 {% block content %}
+    {% for d in data %}
+        {{ d.id }}
+    {% endfor %}
     <div class="container text-center mt-4">
         <div class="row justify-content-md-center">
             <table class="table">
