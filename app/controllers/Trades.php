@@ -19,4 +19,14 @@ class Trades extends Controller
     {
         return $this->tradeModel->getAllTrades();
     }
+
+    public function updateTrades()
+    {
+        $recentTrades = $this->tradeModel->getRecentTrades();
+        if ($recentTrades) {
+            print_r(json_encode($recentTrades));
+            return;
+        }
+
+    }
 }

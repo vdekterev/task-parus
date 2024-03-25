@@ -6,24 +6,25 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th scope="col">Fedid</th>
-                    <th scope="col">Описание</th>
-                    <th scope="col">Начальная цена</th>
+                    <th scope="col">Номер дела</th>
+                    <th scope="col">Лот</th>
+                    <th scope="col">Площадка</th>
+                    <th scope="col">Тип</th>
                     <th scope="col">Email контактного лица</th>
                     <th scope="col">Номер контактного лица</th>
                     <th scope="col">ИНН должника</th>
-                    <th scope="col">Номер дела</th>
                     <th scope="col">Дата проведения</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody class="tableBody">
                 {% for d in data %}
-
                     <tr>
-                        <th scope="row">{{ d.id }}</th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <th scope="row">
+                            <a href="https://fedresurs.ru/bidding/{{ d.guid }}" target="_blank">{{ d.num }}
+                            </a></th>
+                        <td>{{ d.lot }}</td>
+                        <td>{{ d.place }}</td>
+                        <td>{{ d.type }}</td>
                         <td></td>
                         <td></td>
                         <td></td>

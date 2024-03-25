@@ -91,9 +91,9 @@ class Database
      * Get result as an array of objects
      * @return array
      */
-    public function getResult(): array
+    public function getResult(string $query = 'SELECT * FROM torgi'): array
     {
-        $this->query('SELECT * FROM torgi');
+        $this->query($query);
         $this->execute();
         return $this->stmt->fetchAll(PDO::FETCH_OBJ);
     }

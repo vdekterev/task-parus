@@ -14,6 +14,16 @@ class Trade
         return $this->db->getResult();
     }
 
+    public function getRecentTrades(int $interval = 30)
+    {
+        $query = "SELECT * FROM torgi WHERE created >= NOW() - INTERVAL $interval SECOND";
+        $result = $this->db->getResult($query);
+        if (empty($result)) {
+            return false;
+        }
+        return $result;
+    }
+
     public function createLot(array $formdata): bool
     {
         $this->db->query('INSERT INTO trades (url, lot_number, content, initial_price, email, phone, debtor_inn, case_number, start_date) 

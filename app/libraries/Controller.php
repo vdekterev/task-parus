@@ -34,10 +34,8 @@ class Controller
         $entity = $viewArr[0];
         $method = $viewArr[1];
         if (file_exists("../app/views/$view.twig")) {
-//            require_once "../app/views/$view.twig";
             $loader = new FilesystemLoader(APP_ROOT."/views/$entity");
             $twig = new Environment($loader);
-//            print_r($data);
             echo $twig->render("$method.twig", ['data' => $data]);
         } else {
             die("View: $view does not exist");

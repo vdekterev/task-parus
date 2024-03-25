@@ -1,22 +1,41 @@
-const form = document.querySelector('.form'),
-    tradeNumber = document.querySelector('input#tradeNumber'),
-    lotNumber = document.querySelector('input#lotNumber'),
-    alert = document.querySelector('#alert');
+function fetchData() {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            const tableBody = document.querySelector('.tableBody');
 
-lotNumber.addEventListener('input', (e) => {
-    const regexp = new RegExp("[0-9]{4}");
-    if (e.target.value.length > 4) {
-        e.target.value = e.target.value.slice(0, 4);
-    }
-})
+            if (this.responseText === ''){
+                return;
+            }
+            let formattedData = formatData(this.responseText);
+            console.log(formattedData)
+            tableBody.innerHTML = formattedData + tableBody.innerHTML;
+        }
+    };
+    xhttp.open("GET", "http://localhost/task-parus/trades/updatetrades", true);
+    xhttp.send();
+}
 
-tradeNumber.addEventListener('change', (e) => {
-    const regexp = new RegExp("^[0-9]{4,}[-]{1}[А-Я]{4}$");
-    let value = e.target.value.trim();
-    if (!regexp.test(value)) {
-        e.target.value = '';
-        alert.style.display = 'block';
-    } else {
-        alert.style.display = 'none';
-    }
-});
+
+// Вызываем fetchData каждые 5 секунд
+setInterval(fetchData, 5000);
+
+function formatData(response) {
+    let trades = JSON.parse(response)
+    let newTrades = '';
+    trades.forEach((d) => newTrades +=
+    `<tr>
+        <th scope="row">
+        <a href="https://fedresurs.ru/bidding/${d.guid}" target="_blank">${d.num}
+        </a></th>
+        <td>${d.lot}</td>
+        <td>${d.place}</td>
+        <td>${d.type}</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+   </tr>`)
+
+    return newTrades;
+}
