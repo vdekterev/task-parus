@@ -7,8 +7,8 @@ class Trades extends Controller
 
     public function __construct()
     {
-        $this->tradeModel = $this->model('Trade', DB_HOST, DB_NAME, DB_USERNAME, DB_PASSWORD);
-        $this->tbTradeModel = $this->model('Trade', TB_DB_HOST, DB_NAME, TB_DB_USERNAME, TB_DB_PASSWORD);
+        $this->tradeModel = $this->model('Trade', DB_HOST, DB_NAME, DB_USERNAME, DB_PASSWORD, 'torgi');
+        $this->tbTradeModel = $this->model('Trade', TB_DB_HOST, DB_NAME, TB_DB_USERNAME, TB_DB_PASSWORD, 'torgi');
     }
 
     public function index(): void

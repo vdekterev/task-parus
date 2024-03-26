@@ -8,6 +8,7 @@
 
 class Database
 {
+    protected string $tableName;
     public PDO $dbh; // Database Handler
     /**
      * @var PDOStatement
@@ -18,11 +19,11 @@ class Database
      */
     protected string $error;
 
-    public function __construct(string $host, string $dbname, string $username, string $password)
+    public function __construct(string $host, string $dbname, string $username, string $password, $tableName)
     {
         // Set DSN (Data Source Name)
         $dsn = "mysql:host=$host;dbname=$dbname;charset=utf8mb4";
-
+        $this->tableName = $tableName;
         $options = array(
             PDO::ATTR_PERSISTENT => true, // checking if connection already established
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
@@ -70,10 +71,14 @@ class Database
 
     /**
      * Get result as an array of objects
+     * @param string $query
      * @return array
      */
-    public function getResult(string $query = 'SELECT * FROM torgi'): array
+    public function getResult(string $query = ""): array
     {
+        if (empty($query)) {
+            $query = "SELECT * FROM $this->tableName";
+        }
         $this->query($query);
         $this->execute();
         return $this->stmt->fetchAll(PDO::FETCH_OBJ);

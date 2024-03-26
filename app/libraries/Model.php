@@ -4,9 +4,9 @@ abstract class Model
 {
     protected Database $db;
 
-    public function __construct(string $host, string $dbname, string $username, string $password)
+    public function __construct(string $host, string $dbname, string $username, string $password, string $tableName)
     {
-        $this->db = new Database($host, $dbname, $username, $password);
+        $this->db = new Database($host, $dbname, $username, $password, $tableName);
     }
 
     public function getAll(): array
