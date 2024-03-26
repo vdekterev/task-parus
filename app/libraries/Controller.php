@@ -14,12 +14,12 @@ class Controller
      * @param string $model
      * @return object
      */
-    public function model(string $model): object
+    public function model(string $model, string $host, string $dbname, string $username, string $password): object
     {
         $model = ucwords($model);
         require_once APP_ROOT . "/models/$model.php";
 
-        return new $model;
+        return new $model($host, $dbname, $username, $password);
     }
 
     /**
@@ -33,8 +33,9 @@ class Controller
         $viewArr = explode('/', $view);
         $entity = $viewArr[0];
         $method = $viewArr[1];
+
         if (file_exists("../app/views/$view.twig")) {
-            $loader = new FilesystemLoader(APP_ROOT."/views/$entity");
+            $loader = new FilesystemLoader([APP_ROOT."/views/$entity"]);
             $twig = new Environment($loader);
             echo $twig->render("$method.twig", ['data' => $data]);
         } else {

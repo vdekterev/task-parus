@@ -1,0 +1,230 @@
+{% extends 'base.twig' %}
+{% block content %}
+    <h1 style="text-align: center">My Parser</h1>
+    <div class="container text-center mt-4">
+        <div class="row justify-content-md-center">
+            <table class="table table-success">
+                <thead>
+                <tr>
+                    <th scope="col">guid</th>
+                    <th scope="col">fedid</th>
+                    <th scope="col">place</th>
+                    <th scope="col">type</th>
+                    <th scope="col">mess_id</th>
+                    <th scope="col">final_mess_id</th>
+                    <th scope="col">fr_obtain</th>
+                    <th scope="col">section</th>
+                    <th scope="col">num</th>
+                    <th scope="col">lot</th>
+                    <th scope="col">price</th>
+                    <th scope="col">pricestep</th>
+                    <th scope="col">zadatok</th>
+                    <th scope="col">type</th>
+                    <th scope="col">tstart</th>
+                    <th scope="col">tend</th>
+                    <th scope="col">zstart</th>
+                    <th scope="col">zend</th>
+                    <th scope="col">sud</th>
+                    <th scope="col">nomer_dela</th>
+                    <th scope="col">min_price</th>
+                </tr>
+                </thead>
+                <tbody class="tableBody">
+                    <tr>
+                        <th scope="row">
+                            <a href="https://fedresurs.ru/bidding/{{ data['local'].guid }}" target="_blank">
+                                {{ data['local'].guid }}
+                            </a></th>
+                        <td>{{ data['local'].fedid }}</td>
+                        <td>{{ data['local'].place }}</td>
+                        <td>{{ data['local'].type }}</td>
+                        <td>{{ data['local'].mess_id }}</td>
+                        <td>{{ data['local'].final_mess_id }}</td>
+                        <td>{{ data['local'].fr_obtain }}</td>
+                        <td>{{ data['local'].section }}</td>
+                        <td>{{ data['local'].num }}</td>
+                        <td>{{ data['local'].lot }}</td>
+                        <td>{{ data['local'].price }}</td>
+                        <td>{{ data['local'].pricestep }}</td>
+                        <td>{{ data['local'].zadatok }}</td>
+                        <td>{{ data['local'].type }}</td>
+                        <td>{{ data['local'].tstart }}</td>
+                        <td>{{ data['local'].tend }}</td>
+                        <td>{{ data['local'].zstart }}</td>
+                        <td>{{ data['local'].zend }}</td>
+                        <td>{{ data['local'].sud }}</td>
+                        <td>{{ data['local'].nomer_dela }}</td>
+                        <td>{{ data['local'].min_price }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="row justify-content-md-center">
+            <table class="table table-success">
+                <thead>
+                <tr>
+                    <th scope="col">cur_price</th>
+                    <th scope="col">price_percent</th>
+                    <th scope="col">adres</th>
+                    <th scope="col">place</th>
+                    <th scope="col">status</th>
+                    <th scope="col">deb_cat_id</th>
+                    <th scope="col">debtor</th>
+                    <th scope="col">debtorid</th>
+                    <th scope="col">my_deb_id</th>
+                    <th scope="col">arbitr</th>
+                    <th scope="col">arbitrid</th>
+                    <th scope="col">my_au_id</th>
+                    <th scope="col">org</th>
+                    <th scope="col">orgid</th>
+                    <th scope="col">my_org_id</th>
+                    <th scope="col">created</th>
+                    <th scope="col">efrs_update</th>
+                    <th scope="col">closed</th>
+                    <th scope="col">close_date</th>
+                    <th scope="col">public</th>
+                </tr>
+                </thead>
+                <tbody class="tableBody">
+                    <tr>
+                        <td>{{ data['local'].cur_price }}</td>
+                        <td>{{ data['local'].price_percent }}</td>
+                        <td>{{ data['local'].adres }}</td>
+                        <td>{{ data['local'].place }}</td>
+                        <td>{{ data['local'].status }}</td>
+                        <td>{{ data['local'].deb_cat_id }}</td>
+                        <td>{{ data['local'].debtor }}</td>
+                        <td>{{ data['local'].debtorid }}</td>
+                        <td>{{ data['local'].my_deb_id }}</td>
+                        <td>{{ data['local'].arbitr }}</td>
+                        <td>{{ data['local'].arbitrid }}</td>
+                        <td>{{ data['local'].my_au_id }}</td>
+                        <td>{{ data['local'].org }}</td>
+                        <td>{{ data['local'].orgid }}</td>
+                        <td>{{ data['local'].my_org_id }}</td>
+                        <td>{{ data['local'].created }}</td>
+                        <td>{{ data['local'].efrs_update }}</td>
+                        <td>{{ data['local'].closed }}</td>
+                        <td>{{ data['local'].close_date }}</td>
+                        <td>{{ data['local'].public }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <h1 style="text-align: center">TBankrot Parser</h1>
+    <div class="container text-center mt-4">
+        <div class="row justify-content-md-center">
+            <table class="table table-info">
+                <thead>
+                <tr>
+                    <th scope="col">guid</th>
+                    <th scope="col">fedid</th>
+                    <th scope="col">place</th>
+                    <th scope="col">type</th>
+                    <th scope="col">mess_id</th>
+                    <th scope="col">final_mess_id</th>
+                    <th scope="col">fr_obtain</th>
+                    <th scope="col">section</th>
+                    <th scope="col">num</th>
+                    <th scope="col">lot</th>
+                    <th scope="col">price</th>
+                    <th scope="col">pricestep</th>
+                    <th scope="col">zadatok</th>
+                    <th scope="col">type</th>
+                    <th scope="col">tstart</th>
+                    <th scope="col">tend</th>
+                    <th scope="col">zstart</th>
+                    <th scope="col">zend</th>
+                    <th scope="col">sud</th>
+                    <th scope="col">nomer_dela</th>
+                    <th scope="col">min_price</th>
+                </tr>
+                </thead>
+                <tbody class="tableBody">
+                    <tr>
+                        <th scope="row">
+                            <a href="https://fedresurs.ru/bidding/{{ data['remote'].guid }}" target="_blank">
+                                {{ data['remote'].guid }}
+                            </a></th>
+                        <td>{{ data['remote'].fedid }}</td>
+                        <td>{{ data['remote'].place }}</td>
+                        <td>{{ data['remote'].type }}</td>
+                        <td>{{ data['remote'].mess_id }}</td>
+                        <td>{{ data['remote'].final_mess_id }}</td>
+                        <td>{{ data['remote'].fr_obtain }}</td>
+                        <td>{{ data['remote'].section }}</td>
+                        <td>{{ data['remote'].num }}</td>
+                        <td>{{ data['remote'].lot }}</td>
+                        <td>{{ data['remote'].price }}</td>
+                        <td>{{ data['remote'].pricestep }}</td>
+                        <td>{{ data['remote'].zadatok }}</td>
+                        <td>{{ data['remote'].type }}</td>
+                        <td>{{ data['remote'].tstart }}</td>
+                        <td>{{ data['remote'].tend }}</td>
+                        <td>{{ data['remote'].zstart }}</td>
+                        <td>{{ data['remote'].zend }}</td>
+                        <td>{{ data['remote'].sud }}</td>
+                        <td>{{ data['remote'].nomer_dela }}</td>
+                        <td>{{ data['remote'].min_price }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="row justify-content-md-center">
+            <table class="table table-info">
+                <thead>
+                <tr>
+                    <th scope="col">cur_price</th>
+                    <th scope="col">price_percent</th>
+                    <th scope="col">adres</th>
+                    <th scope="col">place</th>
+                    <th scope="col">status</th>
+                    <th scope="col">deb_cat_id</th>
+                    <th scope="col">debtor</th>
+                    <th scope="col">debtorid</th>
+                    <th scope="col">my_deb_id</th>
+                    <th scope="col">arbitr</th>
+                    <th scope="col">arbitrid</th>
+                    <th scope="col">my_au_id</th>
+                    <th scope="col">org</th>
+                    <th scope="col">orgid</th>
+                    <th scope="col">my_org_id</th>
+                    <th scope="col">created</th>
+                    <th scope="col">efrs_update</th>
+                    <th scope="col">closed</th>
+                    <th scope="col">close_date</th>
+                    <th scope="col">public</th>
+                </tr>
+                </thead>
+                <tbody class="tableBody">
+                    <tr>
+                        <td>{{ data['remote'].cur_price }}</td>
+                        <td>{{ data['remote'].price_percent }}</td>
+                        <td>{{ data['remote'].adres }}</td>
+                        <td>{{ data['remote'].place }}</td>
+                        <td>{{ data['remote'].status }}</td>
+                        <td>{{ data['remote'].deb_cat_id }}</td>
+                        <td>{{ data['remote'].debtor }}</td>
+                        <td>{{ data['remote'].debtorid }}</td>
+                        <td>{{ data['remote'].my_deb_id }}</td>
+                        <td>{{ data['remote'].arbitr }}</td>
+                        <td>{{ data['remote'].arbitrid }}</td>
+                        <td>{{ data['remote'].my_au_id }}</td>
+                        <td>{{ data['remote'].org }}</td>
+                        <td>{{ data['remote'].orgid }}</td>
+                        <td>{{ data['remote'].my_org_id }}</td>
+                        <td>{{ data['remote'].created }}</td>
+                        <td>{{ data['remote'].efrs_update }}</td>
+                        <td>{{ data['remote'].closed }}</td>
+                        <td>{{ data['remote'].close_date }}</td>
+                        <td>{{ data['remote'].public }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

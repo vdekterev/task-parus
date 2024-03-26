@@ -13,4 +13,10 @@ $dotenv->load();
 define("DB_HOST", $_ENV['HOST']);
 define("DB_USERNAME", $_ENV['USERNAME']);
 define("DB_PASSWORD", $_ENV['PASSWORD']);
+
+
+define("TB_DB_HOST", $_ENV['TB_HOST']);
+define("TB_DB_USERNAME", $_ENV['TB_USERNAME']);
+define("TB_DB_PASSWORD", $_ENV['TB_PASSWORD']);
+
 define("DB_NAME", $_ENV['DBNAME']);

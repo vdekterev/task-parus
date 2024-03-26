@@ -8,47 +8,28 @@
 
 class Database
 {
-    /** credentials
-     * @var string|mixed
-     */
-    private string $host = DB_HOST;
-    /**
-     * @var string|mixed
-     */
-    private string $username = DB_USERNAME;
-    /**
-     * @var string|mixed
-     */
-    private string $password = DB_PASSWORD;
-    /**
-     * @var string|mixed
-     */
-    private string $dbname = DB_NAME;
-
-    /**
-     * @var PDO
-     */
-    private PDO $dbh; // Database Handler
+    public PDO $dbh; // Database Handler
     /**
      * @var PDOStatement
      */
-    private PDOStatement $stmt; // Statement
+    public PDOStatement $stmt; // Statement
     /**
      * @var string
      */
-    private string $error;
+    protected string $error;
 
-    public function __construct()
+    public function __construct(string $host, string $dbname, string $username, string $password)
     {
         // Set DSN (Data Source Name)
-        $dsn = "mysql:host={$this->host};dbname={$this->dbname}";
+        $dsn = "mysql:host=$host;dbname=$dbname;charset=utf8mb4";
+
         $options = array(
             PDO::ATTR_PERSISTENT => true, // checking if connection already established
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         );
         // Create PDO instance
         try {
-            $this->dbh = new PDO($dsn, $this->username, $this->password);
+            $this->dbh = new PDO($dsn, $username, $password);
         } catch (PDOException $e) {
             $this->error = $e->getMessage();
             echo $this->error;
@@ -102,7 +83,7 @@ class Database
      * Get single record as an object
      * @return object|false
      */
-    public function getSingleRecord(): object
+    public function getSingleRecord()
     {
         $this->execute();
         return $this->stmt->fetch(PDO::FETCH_OBJ);

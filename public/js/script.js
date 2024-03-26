@@ -12,10 +12,11 @@ function fetchData() {
             tableBody.innerHTML = formattedData + tableBody.innerHTML;
         }
     };
-    xhttp.open("GET", "http://localhost/task-parus/trades/updatetrades", true);
+    xhttp.open("GET", "http://127.0.0.1/parserui/trades/updatetrades", true);
     xhttp.send();
 }
 
+console.log(123)
 
 // Вызываем fetchData каждые 5 секунд
 setInterval(fetchData, 5000);

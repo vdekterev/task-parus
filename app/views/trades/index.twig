@@ -8,19 +8,18 @@
                 <tr>
                     <th scope="col">Номер дела</th>
                     <th scope="col">Лот</th>
-                    <th scope="col">Площадка</th>
-                    <th scope="col">Тип</th>
-                    <th scope="col">Email контактного лица</th>
-                    <th scope="col">Номер контактного лица</th>
-                    <th scope="col">ИНН должника</th>
-                    <th scope="col">Дата проведения</th>
+                    <th scope="col">Должник</th>
+                    <th scope="col">Арбитражный управляющий</th>
+                    <th scope="col">Организатор</th>
+                    <th scope="col">Сообщения (Messages)</th>
+                    <th scope="col">Сообщения должника (Mess)</th>
                 </tr>
                 </thead>
                 <tbody class="tableBody">
                 {% for d in data %}
                     <tr>
                         <th scope="row">
-                            <a href="https://fedresurs.ru/bidding/{{ d.guid }}" target="_blank">{{ d.num }}
+                            <a href="http://127.0.0.1/trade/{{ d.guid }}/{{ d.lot }}" target="_blank">{{ d.num }}
                             </a></th>
                         <td>{{ d.lot }}</td>
                         <td>{{ d.place }}</td>

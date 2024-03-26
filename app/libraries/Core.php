@@ -52,8 +52,8 @@ class Core
      */
     public function getUrl(): array
     {
-        if (isset($_GET['url'])) {
-            $url = rtrim($_GET['url'], '/');
+        if (isset($_SERVER['REQUEST_URI'])) {
+            $url = rtrim($_SERVER['REQUEST_URI'], '/');
             $url = filter_var($url, FILTER_SANITIZE_URL);
             return explode('/', $url);
         }
@@ -67,9 +67,9 @@ class Core
      */
     public function getController(): object
     {
-        if (isset($this->url[0])) {
-            $controller = ucwords($this->url[0]);
-            unset($this->url[0]);
+        if (isset($this->url[1])) {
+            $controller = ucwords($this->url[1]);
+            unset($this->url[1]);
             if (file_exists("../app/controllers/{$controller}.php")) {
                 $this->currentController = $controller;
             }
@@ -85,9 +85,9 @@ class Core
      */
     public function getMethod(): string
     {
-        if (isset($this->url[1])) {
-            $method = $this->url[1];
-            unset($this->url[1]);
+        if (isset($this->url[2])) {
+            $method = $this->url[2];
+            unset($this->url[2]);
             if (method_exists($this->controllerInstance, $method)) {
                 $this->currentMethod = $method;
             }
