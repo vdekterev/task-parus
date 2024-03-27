@@ -19,11 +19,16 @@ class Debtors extends Controller
 
     public function debtor(int $inn)
     {
-        $debtor = $this->debModel->getSingleTrade($inn);
-        $debtorTb = $this->tbDebModel->getSingleTrade($inn);
+        $debtor = $this->debModel->getSingleDebtor($inn);
+        $debtorTb = $this->tbDebModel->getSingleDebtor($inn);
+        $requiredKeys = ['guid', 'fedid', 'name', 'fname', 'adres', 'phone', 'cat', 'inn', 'ogrn', 'snils', 'opf'];
+        $difference = parent::findDifference($debtor, $debtorTb, $requiredKeys);
         if ($debtor && $debtorTb) {
-            $this->view('debtors/debtor', ['local' => $debtor, 'remote' => $debtorTb]);
+            $this->view('debtors/debtor', ['local' => $debtor, 'remote' => $debtorTb, 'diff' => $difference]);
         } else {
+            echo '<pre>';
+            print_r("Local: $debtor\n");
+            print_r("Remote: $debtorTb\n");
             die("Должник с ИНН: $inn не найден в одной/обеих базах");
         }
     }

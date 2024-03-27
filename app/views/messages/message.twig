@@ -1,0 +1,78 @@
+{% extends 'base.twig' %}
+{% block title %} Message: {{ data['local'].url }} {% endblock %}
+{% block content %}
+    <h1 style="text-align: center">My Parser</h1>
+    <div class="container text-center mt-4">
+        <div class="row justify-content-md-center">
+            <table class="table table-success">
+                <thead>
+                <tr>
+                    <th scope="col" id="guid">guid</th>
+                    <th scope="col" id="type_id">type_id</th>
+                    <th scope="col" id="num">num</th>
+                    <th scope="col" id="lot">lot</th>
+                    <th scope="col" id="date">date</th>
+                    <th scope="col" id="lot_fedid">lot_fedid</th>
+                    <th scope="col" id="sended">sended</th>
+                    <th scope="col" id="created">created</th>
+                </tr>
+                </thead>
+                <tbody class="tableBody">
+                <tr>
+                    <th scope="row">
+                        <a href="https://old.bankrot.fedresurs.ru/TradeMessageInfo.aspx?ID={{ data['local'].guid }}" target="_blank">
+                            {{ data['local'].guid }}
+                        </a></th>
+                    <td>{{ data['local'].type_id }}</td>
+                    <td>{{ data['local'].num }}</td>
+                    <td>{{ data['local'].lot }}</td>
+                    <td>{{ data['local'].date }}</td>
+                    <td>{{ data['local'].lot_fedid }}</td>
+                    <td>{{ data['local'].sended }}</td>
+                    <td>{{ data['local'].created }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <h1 style="text-align: center">TBankrot Parser</h1>
+    <div class="container text-center mt-4">
+        <div class="row justify-content-md-center">
+            <table class="table table-info">
+                <thead>
+                <tr>
+                    <th scope="col" id="guid">guid</th>
+                    <th scope="col" id="type_id">type_id</th>
+                    <th scope="col" id="num">num</th>
+                    <th scope="col" id="lot">lot</th>
+                    <th scope="col" id="date">date</th>
+                    <th scope="col" id="lot_fedid">lot_fedid</th>
+                    <th scope="col" id="sended">sended</th>
+                    <th scope="col" id="created">created</th>
+                </tr>
+                </thead>
+                <tbody class="tableBody">
+                <tr>
+                    <th scope="row">
+                        <a href="https://old.bankrot.fedresurs.ru/TradeMessageInfo.aspx?ID={{ data['remote'].guid }}" target="_blank">
+                            {{ data['remote'].guid }}
+                        </a></th>
+                    <td>{{ data['remote'].type_id }}</td>
+                    <td>{{ data['remote'].num }}</td>
+                    <td>{{ data['remote'].lot }}</td>
+                    <td>{{ data['remote'].date }}</td>
+                    <td>{{ data['remote'].lot_fedid }}</td>
+                    <td>{{ data['remote'].sended }}</td>
+                    <td>{{ data['remote'].created }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        {% for d in data['diff'] %}
+        const {{ d }} = document.querySelectorAll('#{{ d }}');
+        {{ d }}.forEach((el) => el.style.backgroundColor='red');
+        {% endfor %}
+    </script>
+{% endblock %}

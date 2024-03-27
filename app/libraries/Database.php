@@ -77,7 +77,7 @@ class Database
     public function getResult(string $query = ""): array
     {
         if (empty($query)) {
-            $query = "SELECT * FROM $this->tableName";
+            $query = "SELECT * FROM $this->tableName ORDER BY $this->tableName.id DESC";
         }
         $this->query($query);
         $this->execute();

@@ -1,0 +1,73 @@
+{% extends 'base.twig' %}
+{% block title %} АУ: {{ data['local'].inn }} {% endblock %}
+{% block content %}
+    <h1 style="text-align: center">My Parser</h1>
+    <div class="container text-center mt-4">
+        <div class="row justify-content-md-center">
+            <table class="table table-success">
+                <thead>
+                <tr>
+                    <th scope="col" id="guid">guid</th>
+                    <th scope="col" id="fedid">fedid</th>
+                    <th scope="col" id="fio">fio</th>
+                    <th scope="col" id="inn">inn</th>
+                    <th scope="col" id="nomer">nomer</th>
+                    <th scope="col" id="reg_date">reg_date</th>
+                    <th scope="col" id="cpo">cpo</th>
+                </tr>
+                </thead>
+                <tbody class="tableBody">
+                <tr>
+                    <th scope="row">
+                        <a href="https://fedresurs.ru/person/{{ data['local'].guid }}" target="_blank">
+                            {{ data['local'].guid }}
+                        </a></th>
+                    <td>{{ data['local'].fedid }}</td>
+                    <td>{{ data['local'].fio }}</td>
+                    <td>{{ data['local'].inn }}</td>
+                    <td>{{ data['local'].nomer }}</td>
+                    <td>{{ data['local'].reg_date }}</td>
+                    <td>{{ data['local'].cpo }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <h1 style="text-align: center">TBankrot Parser</h1>
+    <div class="container text-center mt-4">
+        <div class="row justify-content-md-center">
+            <table class="table table-info">
+                <thead>
+                <tr>
+                    <th scope="col" id="guid">guid</th>
+                    <th scope="col" id="fedid">fedid</th>
+                    <th scope="col" id="fio">fio</th>
+                    <th scope="col" id="inn">inn</th>
+                    <th scope="col" id="nomer">nomer</th>
+                    <th scope="col" id="reg_date">reg_date</th>
+                    <th scope="col" id="cpo">cpo</th>
+                </tr>
+                </thead>
+                <tbody class="tableBody">
+                <tr>
+                    <th scope="row">
+                    Устарел
+                    </th>
+                    <td>{{ data['remote'].fedid }}</td>
+                    <td>{{ data['remote'].fio }}</td>
+                    <td>{{ data['remote'].inn }}</td>
+                    <td>{{ data['remote'].nomer }}</td>
+                    <td>{{ data['remote'].reg_date }}</td>
+                    <td>{{ data['remote'].cpo }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        {% for d in data['diff'] %}
+        const {{ d }} = document.querySelectorAll('#{{ d }}');
+        {{ d }}.forEach((el) => el.style.backgroundColor='red');
+        {% endfor %}
+    </script>
+{% endblock %}

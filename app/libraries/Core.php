@@ -36,18 +36,14 @@ class Core
     public function __construct()
     {
         $this->url = $this->getUrl();
-        echo '<pre>';
-        print_r($this->url);
+
         // controller logic
         $this->controllerInstance = $this->getController();
-
         // method logic
         $this->currentMethod = $this->getMethod();
 
-
         // parameters logic
         $this->params = $this->getParams();
-
         //
         call_user_func_array([$this->controllerInstance, $this->currentMethod], $this->params);
     }
@@ -107,6 +103,7 @@ class Core
      */
     public function getParams(): array
     {
+        $this->url = array_slice($this->url, 1);
         return $this->url ? array_values($this->url) : [];
     }
 }

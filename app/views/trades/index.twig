@@ -1,6 +1,7 @@
 {% extends 'base.twig' %}
+{% block title %} Торги {% endblock %}
 {% block content %}
-
+    <h2 style="text-align: center">Торги</h2>
     <div class="container text-center mt-4">
         <div class="row justify-content-md-center">
             <table class="table">
@@ -9,26 +10,17 @@
                     <th scope="col">Номер дела</th>
                     <th scope="col">Лот</th>
                     <th scope="col">Должник</th>
-                    <th scope="col">Арбитражный управляющий</th>
-                    <th scope="col">Организатор</th>
-                    <th scope="col">Сообщения (Messages)</th>
-                    <th scope="col">Сообщения должника (Mess)</th>
+
                 </tr>
                 </thead>
                 <tbody class="tableBody">
                 {% for d in data %}
                     <tr>
                         <th scope="row">
-                            <a href="http://127.0.0.1/trade/{{ d.guid }}/{{ d.lot }}" target="_blank">{{ d.num }}
+                            <a href="http://parserui.loc/trades/trade/{{ d.guid }}/{{ d.lot }}" target="_blank">{{ d.num }}
                             </a></th>
                         <td>{{ d.lot }}</td>
-                        <td>{{ d.place }}</td>
-                        <td>{{ d.type }}</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-
+                        <td>{{ d.debtor }}</td>
                     </tr>
                 {% endfor %}
                 </tbody>

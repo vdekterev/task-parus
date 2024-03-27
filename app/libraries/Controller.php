@@ -34,11 +34,22 @@ class Controller
         $entity = $viewArr[0];
         $method = $viewArr[1];
         if (file_exists("../app/views/$view.twig")) {
-            $loader = new FilesystemLoader([APP_ROOT."/views/$entity"]);
+            $loader = new FilesystemLoader([APP_ROOT . '/views', APP_ROOT . "/views/$entity"]);
             $twig = new Environment($loader);
             echo $twig->render("$method.twig", ['data' => $data]);
         } else {
             die("View: $view does not exist");
         }
+    }
+
+    protected function findDifference(object $local, object $remote, array $requiredKeys): array
+    {
+        $difference = array_diff_assoc(get_object_vars($local), get_object_vars($remote));
+        foreach ($difference as $key => $value) {
+            if (!in_array($key, $requiredKeys)) {
+                unset($difference[$key]);
+            }
+        }
+        return array_keys($difference);
     }
 }

@@ -1,0 +1,39 @@
+{% extends 'base.twig' %}
+{% block title %} Message {% endblock %}
+{% block content %}
+    <h2 style="text-align: center">Message</h2>
+    <div class="container text-center mt-4">
+        <div class="row justify-content-md-center">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">guid</th>
+                    <th scope="col">type_id</th>
+                    <th scope="col">num</th>
+                    <th scope="col">lot</th>
+                    <th scope="col">date</th>
+                    <th scope="col">lot_fedid</th>
+                    <th scope="col">sended</th>
+                    <th scope="col">created</th>
+                </tr>
+                </thead>
+                <tbody class="tableBody">
+                {% for d in data %}
+                    <tr>
+                        <th scope="row">
+                            <a href="http://parserui.loc/messages/message/{{ d.guid }}/{{ d.lot }}" target="_blank">{{ d.guid }}
+                            </a></th>
+                        <td>{{ d.type_id }}</td>
+                        <td>{{ d.num }}</td>
+                        <td>{{ d.lot }}</td>
+                        <td>{{ d.date }}</td>
+                        <td>{{ d.lot_fedid }}</td>
+                        <td>{{ d.sended }}</td>
+                        <td>{{ d.created }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

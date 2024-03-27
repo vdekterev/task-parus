@@ -1,7 +1,7 @@
 {% extends 'base.twig' %}
-{% block title %} Должники {% endblock %}
+{% block title %} Организаторы {% endblock %}
 {% block content %}
-    <h2 style="text-align: center">Должники</h2>
+    <h2 style="text-align: center">Организаторы</h2>
     <div class="container text-center mt-4">
         <div class="row justify-content-md-center">
             <table class="table">
@@ -15,9 +15,9 @@
                 {% for d in data %}
                     <tr>
                         <th scope="row">
-                            <a href="http://parserui.loc/debtors/debtor/{{ d.inn }}" target="_blank">{{ d.inn }}
+                            <a href="http://parserui.loc/orgs/org/{{ d.inn }}" target="_blank">{{ d.inn }}
                             </a></th>
-                        <td>{{ d.name }}</td>
+                        <td>{{ d.fname }}</td>
                     </tr>
                 {% endfor %}
                 </tbody>

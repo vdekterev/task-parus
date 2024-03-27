@@ -1,0 +1,71 @@
+{% extends 'base.twig' %}
+{% block title %} Mess: {{ data['local'].url }} {% endblock %}
+{% block content %}
+    <h1 style="text-align: center">My Parser</h1>
+    <div class="container text-center mt-4">
+        <div class="row justify-content-md-center">
+            <table class="table table-success">
+                <thead>
+                <tr>
+                    <th scope="col" id="url">url</th>
+                    <th scope="col" id="debtor_id">debtor_id</th>
+                    <th scope="col" id="date">date</th>
+                    <th scope="col" id="type_id">type_id</th>
+                    <th scope="col" id="my_org_id">my_org_id</th>
+                    <th scope="col" id="my_au_id">my_au_id</th>
+                </tr>
+                </thead>
+                <tbody class="tableBody">
+                <tr>
+                    <th scope="row">
+                        <a href="https://fedresurs.ru/bankruptmessage/{{ data['local'].url }}" target="_blank">
+                            {{ data['local'].url }}
+                        </a></th>
+                    <td>{{ data['local'].debtor_id }}</td>
+                    <td>{{ data['local'].date }}</td>
+                    <td>{{ data['local'].type_id }}</td>
+                    <td>{{ data['local'].my_org_id }}</td>
+                    <td>{{ data['local'].my_au_id }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <h1 style="text-align: center">TBankrot Parser</h1>
+    <div class="container text-center mt-4">
+        <div class="row justify-content-md-center">
+            <table class="table table-info">
+                <thead>
+                <tr>
+                    <th scope="col" id="url">url</th>
+                    <th scope="col" id="debtor_id">debtor_id</th>
+                    <th scope="col" id="date">date</th>
+                    <th scope="col" id="type_id">type_id</th>
+                    <th scope="col" id="my_org_id">my_org_id</th>
+                    <th scope="col" id="my_au_id">my_au_id</th>
+                </tr>
+                </thead>
+                <tbody class="tableBody">
+                <tr>
+                    <th scope="row">
+                        <a href="https://old.bankrot.fedresurs.ru/MessageWindow.aspx?ID={{ data['remote'].url }}" target="_blank">
+                            {{ data['remote'].url }}
+                        </a></th>
+                    </th>
+                    <td>{{ data['remote'].debtor_id }}</td>
+                    <td>{{ data['remote'].date }}</td>
+                    <td>{{ data['remote'].type_id }}</td>
+                    <td>{{ data['remote'].my_org_id }}</td>
+                    <td>{{ data['remote'].my_au_id }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        {% for d in data['diff'] %}
+        const {{ d }} = document.querySelectorAll('#{{ d }}');
+        {{ d }}.forEach((el) => el.style.backgroundColor='red');
+        {% endfor %}
+    </script>
+{% endblock %}

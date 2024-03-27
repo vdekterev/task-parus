@@ -1,5 +1,5 @@
 {% extends 'base.twig' %}
-{% block title %} Должник: {{ data['local'].inn }} {% endblock %}
+{% block title %} Организатор: {{ data['local'].inn }} {% endblock %}
 {% block content %}
     <h1 style="text-align: center">My Parser</h1>
     <div class="container text-center mt-4">
@@ -12,18 +12,18 @@
                     <th scope="col" id="name">name</th>
                     <th scope="col" id="fname">fname</th>
                     <th scope="col" id="adres">adres</th>
-                    <th scope="col" id="phone">phone</th>
-                    <th scope="col" id="cat">cat</th>
                     <th scope="col" id="inn">inn</th>
+                    <th scope="col" id="kpp">kpp</th>
                     <th scope="col" id="ogrn">ogrn</th>
-                    <th scope="col" id="snils">snils</th>
                     <th scope="col" id="opf">opf</th>
+                    <th scope="col" id="phone">phone</th>
+                    <th scope="col" id="mail">mail</th>
                 </tr>
                 </thead>
                 <tbody class="tableBody">
                 <tr>
                     <th scope="row">
-                        {% if d['local'].ogrn %}
+                        {% if data['local'].ogrn %}
                             <a href="https://fedresurs.ru/company/{{ data['local'].guid }}" target="_blank">
                                 {{ data['local'].guid }}
                             </a>
@@ -37,12 +37,12 @@
                     <td>{{ data['local'].name }}</td>
                     <td>{{ data['local'].fname }}</td>
                     <td>{{ data['local'].adres }}</td>
-                    <td>{{ data['local'].phone }}</td>
-                    <td>{{ data['local'].cat }}</td>
                     <td>{{ data['local'].inn }}</td>
+                    <td>{{ data['local'].kpp }}</td>
                     <td>{{ data['local'].ogrn }}</td>
-                    <td>{{ data['local'].snils }}</td>
                     <td>{{ data['local'].opf }}</td>
+                    <td>{{ data['local'].phone }}</td>
+                    <td>{{ data['local'].mail }}</td>
                 </tr>
                 </tbody>
             </table>
@@ -59,29 +59,29 @@
                     <th scope="col" id="name">name</th>
                     <th scope="col" id="fname">fname</th>
                     <th scope="col" id="adres">adres</th>
-                    <th scope="col" id="phone">phone</th>
-                    <th scope="col" id="cat">cat</th>
                     <th scope="col" id="inn">inn</th>
+                    <th scope="col" id="kpp">kpp</th>
                     <th scope="col" id="ogrn">ogrn</th>
-                    <th scope="col" id="snils">snils</th>
                     <th scope="col" id="opf">opf</th>
+                    <th scope="col" id="phone">phone</th>
+                    <th scope="col" id="mail">mail</th>
                 </tr>
                 </thead>
                 <tbody class="tableBody">
                 <tr>
-                    <td>
-                        -
-                    </td>
+                    <th scope="row">
+                        Устарел
+                    </th>
                     <td>{{ data['remote'].fedid }}</td>
                     <td>{{ data['remote'].name }}</td>
                     <td>{{ data['remote'].fname }}</td>
                     <td>{{ data['remote'].adres }}</td>
-                    <td>{{ data['remote'].phone }}</td>
-                    <td>{{ data['remote'].cat }}</td>
                     <td>{{ data['remote'].inn }}</td>
+                    <td>{{ data['remote'].kpp }}</td>
                     <td>{{ data['remote'].ogrn }}</td>
-                    <td>{{ data['remote'].snils }}</td>
                     <td>{{ data['remote'].opf }}</td>
+                    <td>{{ data['remote'].phone }}</td>
+                    <td>{{ data['remote'].mail }}</td>
                 </tr>
                 </tbody>
             </table>

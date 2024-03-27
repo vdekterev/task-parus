@@ -21,9 +21,14 @@ class Trades extends Controller
     {
         $trade = $this->tradeModel->getSingleTrade($guid, $lot);
         $tradeTb = $this->tbTradeModel->getSingleTrade($guid, $lot);
-
+        $requiredKeys = ['fedid', 'guid', 'place', 'type', 'section', 'num',
+            'lot', 'price', 'pricestep', 'zadatok', 'tstart', 'tend',
+            'zstart', 'zend', 'sud', 'nomer_dela', 'min_price', 'cur_price',
+            'price_percent', 'adres', 'status', 'debtor', 'debtorid', 'arbitr',
+            'arbitrid', 'org', 'orgid','closed', 'close_date', 'public'];
+        $difference = parent::findDifference($trade, $tradeTb, $requiredKeys);
         if ($trade && $tradeTb) {
-            $this->view('trades/trade', ['local' => $trade, 'remote' => $tradeTb]);
+            $this->view('trades/trade', ['local' => $trade, 'remote' => $tradeTb, 'diff' => $difference]);
         } else {
             die("Запись: $guid с лотом $lot не найдена в одной из баз");
         }
